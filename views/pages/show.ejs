@@ -13,16 +13,29 @@
 </head>
 <body>
     <section id = "left">
-        <div class="icons" id="weather">Weather</div>
+        <div class="icons" id="weather">Weather
+        </div>
         <section class="displayLeft">
+                    <p>
+                        <%= weatherArray[0].icon %>
+                        <%= weatherArray[0].forecast %>
+                    </p>
 
-          <p>
-            <%= weatherArray[0].icon %>
-            <%= weatherArray[0].forecast %>
-        </p>
         </section>
-        <div class="icons" id="temp">Temperature</div>
-        <section class="displayLeft"></section>
+        <div class="icons" id="temp">Forecast</div>
+        <section class="displayLeft">
+            <% weatherArray.forEach(item => { %>
+                    <h2>
+                        <%= item.time %>
+                    </h2>
+                    <p>
+                        <%= item.averageTemp %>
+                    </p>
+                    <p>
+                        <%= item.icon %>
+                    </p>
+                    <% })%>
+        </section>
         <div class="icons" >Local News</div>
         <section id="news" class="displayLeft"></section>
     </section>

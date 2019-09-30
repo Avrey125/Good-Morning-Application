@@ -38,6 +38,7 @@ function Weather (weatherDataResults) {
   this.tempHigh = Math.floor(weatherDataResults.temperatureHigh);
   this.tempLow = Math.floor(weatherDataResults.temperatureLow);
   this.percentPrecip = Math.floor(weatherDataResults.precipProbability * 100);
+  this.averageTemp = Math.floor((this.tempHigh+this.tempLow)/2);
 }
 
 function News (newsResults) {
@@ -53,7 +54,7 @@ function Event (eventResults){
   this.title = eventResults.summary;
   this.start = eventResults.start.dateTime || eventResults.start.date;
   this.end = eventResults.end.dateTime || eventResults.end.date;
-  this.url = eventResults.htmlLink
+  this.url = eventResults.htmlLink;
 }
 
 // const start = event.start.dateTime || event.start.date;
