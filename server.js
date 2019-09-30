@@ -37,6 +37,10 @@ app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
+app.get('/show', (request, response) => {
+  response.render('pages/show');
+})
+
 function Weather (weatherDataResults) {
   //   this.searchQuery = searchQuery;
   this.forecast = weatherDataResults.summary;
@@ -151,7 +155,6 @@ function listEvents(auth) {
   }, (err, res) => {
     if (err) return console.log('The API returned an error: ' + err);
     const events = res.data.items;
-    console.log(events);
     if (events.length) {
       console.log('Upcoming 10 events:');
       events.map((event, i) => {
@@ -193,6 +196,9 @@ function weatherAPICall(req, res){
       console.log(err);
     })
 }
+
+// -----------------spotify API--------------------
+
 
 newsAPIcall();
 weatherAPICall();
