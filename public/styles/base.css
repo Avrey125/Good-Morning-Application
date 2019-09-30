@@ -1,5 +1,5 @@
 
-body{
+#showBody{
     box-sizing: border-box;
     border:1px solid red;
     display:flex;
@@ -8,4 +8,8 @@ body{
     background: rgb(0, 0, 0);
     color:white;
     /* text-shadow: 2px 2px rgb(240, 248, 247) */
+}
+
+#homeBody{ 
+    box-sizing: border-box; 
 }
