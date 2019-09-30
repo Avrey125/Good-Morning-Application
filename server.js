@@ -9,7 +9,7 @@ require('dotenv').config();
 
 // Application Setup
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Express middleware
 // Utilize ExpressJS functionality to parse the body of the request
