@@ -1,0 +1,27 @@
+{
+  "name": "good-morning-application",
+  "version": "1.0.0",
+  "description": "group project 301 cc, dp, cm, ab",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avrey125/Good-Morning-Application.git"
+  },
+  "author": "cc, dp, cm, ab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avrey125/Good-Morning-Application/issues"
+  },
+  "homepage": "https://github.com/Avrey125/Good-Morning-Application#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "pg": "^7.12.1",
+    "superagent": "^5.1.0"
+  }
+}
