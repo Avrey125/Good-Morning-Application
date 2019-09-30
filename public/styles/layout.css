@@ -1,0 +1,55 @@
+#left{
+    display:flex;
+    flex-direction:column;
+    margin-left:5%;
+
+}
+#right{
+  display:flex;
+  flex-direction:column;
+  width:900px;
+  border:1px solid red;
+  margin-right:10%;
+
+}
+
+.displayLeft{
+    border: 10px inset blue;
+    padding:10px;
+    text-align:center;
+    border-radius:50px;
+    margin: 10px 10px;
+    overflow:auto;
+    box-shadow:         3px 3px 5px 6px #ccc; 
+
+} 
+
+#displayRight{
+  border: 10px inset blue;
+  padding:10px;
+  text-align:center;
+  border-radius:50px;
+  margin: 10px 10px;
+  height:400px;
+  overflow:auto;
+} 
+
+.icons{
+  width:300px;
+  padding:10px;
+  text-align:center;
+  border-radius:50px;
+  margin: 10px 10px;
+  font-size:2em;
+}
+
+#name{
+  width:70%;
+  align-self:center;
+  font-family:Shrikhand;
+}
+
+#news{
+  height:400px;
+}
+
