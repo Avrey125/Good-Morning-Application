@@ -28,18 +28,7 @@ if (process.env.DATABASE_URL) {
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
 
-// listen for requests
-app.listen(PORT, () => console.log('Listening on port:', PORT));
 
-// API Routes
-app.get('/', (request, response) => {
-  // test out your routes, perhaps ejs views or database stuff
-  response.render('pages/index');
-});
-
-app.get('/show', (request, response) => {
-  response.render('pages/show');
-})
 
 function Weather (weatherDataResults) {
   //   this.searchQuery = searchQuery;
@@ -48,7 +37,7 @@ function Weather (weatherDataResults) {
   this.time = new Date(weatherDataResults.time * 1000).toDateString();
   this.tempHigh = Math.floor(weatherDataResults.temperatureHigh);
   this.tempLow = Math.floor(weatherDataResults.temperatureLow);
-  this.percentPrecip = weatherDataResults.precipProbability * 100;
+  this.percentPrecip = Math.floor(weatherDataResults.precipProbability * 100);
 }
 
 function News (newsResults) {
@@ -188,9 +177,12 @@ function weatherAPICall(req, res){
   superagent.get(url)
     .then(superagentResults => {
       let dailyResults = superagentResults.body.daily.data;
-      dailyResults.map(day => {
-        console.log(new Weather(day))
+      let weatherArray = dailyResults.map(day => {
+        return new Weather(day);
       })
+      console.log(weatherArray)
+      res.render('pages/show', {weatherArray: weatherArray} );
+      
     })
     .catch(err =>{
       console.log(err);
@@ -200,5 +192,17 @@ function weatherAPICall(req, res){
 // -----------------spotify API--------------------
 
 
+// Routes
+app.get('/', (request, response) => {
+  response.render('pages/index');
+});
+
+app.get('/show', weatherAPICall);
+
+app.use('*', (req, res) => res.status(404).send('This route does not exist.'));
+
+
 newsAPIcall();
 weatherAPICall();
+// listen for requests
+app.listen(PORT, () => console.log('Listening on port:', PORT));
