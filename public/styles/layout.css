@@ -8,31 +8,54 @@
   display:flex;
   flex-direction:column;
   width:900px;
-  border:1px solid red;
   margin-right:10%;
 
 }
 
 .displayLeft{
-    border: 10px inset blue;
     padding:10px;
     text-align:center;
     border-radius:50px;
     margin: 10px 10px;
     overflow:auto;
-    box-shadow:         3px 3px 5px 6px #ccc; 
+    /* display:flex;
+    flex-direction: column; */
+    box-shadow:3px 3px 5px 6px #dedede; 
+
 
 } 
 
 #displayRight{
-  border: 10px inset blue;
   padding:10px;
   text-align:center;
   border-radius:50px;
   margin: 10px 10px;
   height:400px;
   overflow:auto;
+  box-shadow:3px 3px 5px 6px #dedede;
 } 
+
+/* #weatherP{
+ 
+
+} */
+
+#weatherData{
+  display:grid;
+  grid-template-areas:
+   "a b c";
+  
+
+
+}
+.a{
+  margin-bottom:30px;
+}
+
+/* .b{
+  margin
+} */
+
 
 .icons{
   width:300px;
@@ -40,16 +63,102 @@
   text-align:center;
   border-radius:50px;
   margin: 10px 10px;
-  font-size:2em;
+  font-size:4em;
+  text-shadow: #dedede 1px 0 10px;
+  color:black;
+  font-family: Anton;
 }
 
 #name{
   width:70%;
   align-self:center;
-  font-family:Shrikhand;
 }
 
 #news{
   height:400px;
 }
 
+#homePage{
+  display:flex;
+  margin:0 auto;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  width:100%;
+  height:500px;
+}
+
+#morning{
+  font-size:100px;
+  font-family:Notable;
+  margin:20px;
+  text-shadow:0px 10px 10px rgba(0,0,0,0.2);
+}
+
+input{
+  border-radius:50px;
+  padding-left:5px;
+  font-size:30px;
+  margin-top:10px;
+  box-shadow:0px 10px 10px rgba(0,0,0,0.2);
+}
+
+button{
+  border:5px inset rgb(7, 148, 243);
+  font-size:30px;
+  border-radius:50px;
+}
+
+button:hover{
+  background-color: rgb(7, 148, 243);
+}
+
+#nameHome{
+  font-size:20px;
+}
+
+/* courtesy of https://codepen.io/chris22smith/pen/RZogMa  */
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, rgb(99, 229, 252) 50%, rgb(7, 148, 243) 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+
+.bg3 {
+  animation-duration:5s;
+}
+
+.content {
+  background-color:rgba(153, 10, 10, 0.8);
+  border-radius:.25em;
+  box-shadow:0 0 .25em rgba(0,0,0,.25);
+  box-sizing:border-box;
+  left:50%;
+  padding:10vmin;
+  position:fixed;
+  text-align:center;
+  top:50%;
+  transform:translate(-50%, -50%);
+}
+
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
