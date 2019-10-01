@@ -18,9 +18,12 @@
                 </div>
                 <section class="displayLeft">
                             <p >
-                                <%= weatherArray[0].icon %>
                                 <%= weatherArray[0].forecast %>
                             </p>
+                            <p class="c">
+                                    <img src="<%= weatherArray[0].img_url %>">
+                            </p>
+                            <p><span>High: <%= weatherArray[0].tempHigh %> °F</span> <span>Low: <%= weatherArray[0].tempLow %> °F</span> </p>
         
                 </section>
                 <div class="icons" id="temp">Forecast</div>
@@ -30,7 +33,7 @@
                                 <%= item.time %>
                             </h2>
                             <p class="b">
-                                <%= item.averageTemp %>
+                                <%= item.averageTemp %> °F
                             </p>
                             <p class="c">
                                 <img src="<%= item.img_url %>">
@@ -54,6 +57,7 @@
                 <p>
                     <%= item.description %>
                 </p>
+                <button>Save Story</button>
                 <% })%>
         </section>
     </section>
