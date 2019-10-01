@@ -19,11 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
 // Database Setup: if you've got a good DATABASE_URL
-if (process.env.DATABASE_URL) {
-  const client = new pg.Client(process.env.DATABASE_URL);
-  client.connect();
-  client.on('error', err => console.error(err));
-}
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
@@ -166,6 +164,12 @@ app.get('/', (request, response) => {
 app.get('/save/:search_id', (req, res) => {
   let currentIndex = req.params.search_id;
   console.log(currentNewsArray[currentIndex])
+  let {source, author, title, description, url, imgurl} = currentNewsArray[currentIndex];
+  let sql = 'INSERT INTO news(source, author, title, description, url, imgurl) VALUES ($1, $2, $3, $4, $5, $6);';
+  let values = [source, author, title, description, url, imgurl];
+  client.query(sql, values)
+    .then(sqlResults => console.log(`Saved news article #${currentIndex}`))
+
 })
 
 
