@@ -47,6 +47,27 @@ Weather.prototype.textToIcon = function() {
   case 'partly-cloudy-day':
     this.img_url = 'https://i.imgur.com/zeRtVvS.png'
     break;
+  case 'clear-night':
+    this.img_url = 'https://i.imgur.com/a4VnSLD.png'
+    break;
+  case 'snow':
+    this.img_url = 'https://i.imgur.com/vLYjL0m.png'
+    break;
+  case 'wind':
+    this.img_url = 'https://i.imgur.com/rblW3u0.png'
+    break;
+  case 'sleet':
+    this.img_url = 'https://i.imgur.com/NOwnviA.png'
+    break;
+  case 'fog':
+    this.img_url = 'https://i.imgur.com/h6O7owv.png'
+    break;
+  case 'rain':
+    this.img_url = 'https://i.imgur.com/8FsbOim.png'
+    break;
+  case 'cloudy':
+    this.img_url = 'https://i.imgur.com/rblW3u0.png'
+    break;
 
   default:
     break;
