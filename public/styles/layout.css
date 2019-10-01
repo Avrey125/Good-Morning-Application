@@ -18,7 +18,7 @@
     text-align:center;
     border-radius:50px;
     margin: 10px 10px;
-    overflow:auto;
+
     box-shadow:0px 0px 20px 10px #dedede;
 } 
 
@@ -101,6 +101,11 @@ button:hover{
 
 #nameHome{
   font-size:20px;
+}
+
+.c img{
+  height:20px;
+  width:20px;
 }
 
 /* courtesy of https://codepen.io/chris22smith/pen/RZogMa  */
