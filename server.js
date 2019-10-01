@@ -39,6 +39,18 @@ function Weather (weatherDataResults) {
   this.tempLow = Math.floor(weatherDataResults.temperatureLow);
   this.percentPrecip = Math.floor(weatherDataResults.precipProbability * 100);
   this.averageTemp = Math.floor((this.tempHigh+this.tempLow)/2);
+  this.img_url = '';
+}
+
+Weather.prototype.textToIcon = function() {
+  switch (this.icon) {
+  case 'partly-cloudy-day':
+    this.img_url = 'https://i.imgur.com/zeRtVvS.png'
+    break;
+
+  default:
+    break;
+  }
 }
 
 function News (newsResults) {
@@ -84,11 +96,13 @@ function weatherAPICall(req, res){
     .then(superagentResults => {
       let dailyResults = superagentResults.body.daily.data;
       let weatherArray = dailyResults.map(day => {
-        return new Weather(day);
+        let newDay = new Weather(day);
+        newDay.textToIcon();
+        return newDay;
       })
       console.log(weatherArray)
       res.render('pages/show', {weatherArray: weatherArray} );
-      
+
     })
     .catch(err =>{
       console.log(err);

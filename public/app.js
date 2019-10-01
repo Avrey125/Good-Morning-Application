@@ -23,6 +23,7 @@ if (JSON.parse(localStorage.getItem('login'))){
   $('#gmail').attr('value', login.gmail);
   $('button').text('Welcome Back!')
   renderCalendar();
+  $('#name').text('Good Morning ' + login.name)
 }
 
 $('#loginForm').on('submit', () => storeUserInfo())
