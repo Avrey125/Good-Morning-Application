@@ -1,16 +1,12 @@
 'use strict';
 
 function storeUserInfo(e){
-<<<<<<< HEAD
-
-=======
   let login = {
     name: $('#name').val(),
-    gmail: $('#gmail').val()
+    gmail: $('#gmail').val(),
   }
   console.log('click')
   localStorage.setItem('login', JSON.stringify(login))
->>>>>>> ad81df0821bff18b3e30ee0d00eefdeb9846f794
 }
 
 function renderCalendar(){
@@ -27,7 +23,14 @@ if (JSON.parse(localStorage.getItem('login')).name){
   $('#gmail').attr('value', login.gmail);
   $('button').text('Welcome Back!')
 }
-
 $('#loginForm').on('submit', () => storeUserInfo())
+
+function renderIndexPage(){
+  $('#')
+}
+
+$()
+
+renderIndexPage();
 
 renderCalendar();

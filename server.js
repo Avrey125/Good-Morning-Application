@@ -63,16 +63,7 @@ function Event (eventResults){
 
 //------------------Click Function------------------------
 
-function renderIndexPage(){
-  $(document).ready(function(){
-    $('submit-button').click(function(e){
-      e.preventDefault();
-      $('sumbit-button').load('/pages/show');
-    })
-  })
-}
 
-renderIndexPage();
 
 
 
@@ -119,6 +110,8 @@ function weatherAPICall(req, res){
 app.get('/', (request, response) => {
   response.render('pages/index');
 });
+
+
 
 app.get('/show', weatherAPICall);
 
