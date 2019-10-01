@@ -48,6 +48,7 @@
         <div class="icons" >Local News</div>
         <section id="news" class="displayLeft">
             <% newNews.forEach(item => { %>
+                <form action="/save/<%= item.id %>" method= 'get'>
                 <h2>
                     <%= item.imgurl %>
                 </h2>
@@ -57,7 +58,8 @@
                 <p>
                     <%= item.description %>
                 </p>
-                <button>Save Story</button>
+                <button type="submit">Save Story</button>
+            </form>
                 <% })%>
         </section>
     </section>

@@ -28,6 +28,9 @@ if (process.env.DATABASE_URL) {
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
 
+//Globals
+let currentNewsArray = [];
+
 
 
 function Weather (weatherDataResults) {
@@ -68,19 +71,23 @@ Weather.prototype.textToIcon = function() {
   case 'cloudy':
     this.img_url = 'https://i.imgur.com/rblW3u0.png'
     break;
+  case 'clear-day':
+    this.img_url = 'https://i.imgur.com/5XpmW64.png'
+    break;
 
   default:
     break;
   }
 }
 
-function News (newsResults) {
+function News (newsResults, index) {
   this.source = newsResults.source.id;
   this.author = newsResults.author;
   this.title = newsResults.title;
   this.description = newsResults.description;
   this.url = newsResults.url;
   this.imgurl = newsResults.urlToImage;
+  this.id = index;
 }
 
 function Event (eventResults){
@@ -103,19 +110,17 @@ function newsAPIcall(req, res){
   return superagent.get(url)
     .then(superagentResults => {
       let newsResults = superagentResults.body.articles;
-      let newNews = newsResults.map(article => 
-        new News(article)
-      );
+      currentNewsArray = newsResults.map((article, index) => new News(article, index));
       // console.log('newNews: ',newNews);
-      console.log('news', newNews.length);
-      return newNews;
+      console.log('news', currentNewsArray.length);
+      return currentNewsArray;
     });
 }
 
 
 //----------------DarkSky API-----------------------------
 function weatherAPICall(req, res){
-  let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${47.618042},${-122.3362818,15.04}`
+  let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${47.618042},${-122.3362818}`
   return superagent.get(url)
     .then(superagentResults => {
       let dailyResults = superagentResults.body.daily.data;
@@ -158,7 +163,10 @@ app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
-// app.get('/show', weatherAPICall);
+app.get('/save/:search_id', (req, res) => {
+  let currentIndex = req.params.search_id;
+  console.log(currentNewsArray[currentIndex])
+})
 
 
 app.use('*', (req, res) => res.status(404).send('This route does not exist.'));
