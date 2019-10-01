@@ -1,33 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/public/styles/reset.css" />
-    <link rel="stylesheet" href="/public/styles/base.css" />
-    <link rel="stylesheet" href="/public/styles/layout.css" />
-    <link rel="stylesheet" href="/public/styles/modules.css" />
-    <link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
-    <title>Good Morning Application</title>
-</head>
-<body>
-    <section id = "submit">
-        <div class="icons" id="weather">Weather</div>
-        <section class="displayLeft"></section>
-        <div class="icons" id="temp">Temperature</div>
-        <section class="displayLeft"></section>
-        <div class="icons" >Local News</div>
-        <section id="news" class="displayLeft"></section>
-    </section>
-    <section id="right">
-        <div class="icons" id="name">Good Morning </div>
-        <div id="displayRight"></div>
-    </section>
-    
-</body>
-=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,39 +13,51 @@
     <title>Good Morning Application</title>
 </head>
 <body id="showBody">
-    <section id = "left">
-        <div class="icons" id="weather">Weather
-        </div>
-        <section class="displayLeft">
-                    <p>
-                        <%= weatherArray[0].icon %>
-                        <%= weatherArray[0].forecast %>
-                    </p>
+        <section id = "left">
+                <div class="icons" id="weather">Weather
+                </div>
+                <section class="displayLeft">
+                            <p >
+                                <%= weatherArray[0].icon %>
+                                <%= weatherArray[0].forecast %>
+                            </p>
+        
+                </section>
+                <div class="icons" id="temp">Forecast</div>
+                <section class="displayLeft" id="weatherData">
+                    <% weatherArray.forEach(item => { %>
+                            <h2 class="a">
+                                <%= item.time %>
+                            </h2>
+                            <p class="b">
+                                <%= item.averageTemp %>
+                            </p>
+                            <p class="c">
+                                <img src="<%= item.img_url %>">
+                            </p>
+                            <% })%>
+                </section>
+            </section>
 
-        </section>
-        <div class="icons" id="temp">Forecast</div>
-        <section class="displayLeft" id="weatherData">
-            <% weatherArray.forEach(item => { %>
-                    <h2 class="a">
-                        <%= item.time %>
-                    </h2>
-                    <p class="b">
-                        <%= item.averageTemp %>
-                    </p>
-                    <p class="c">
-                        <%= item.icon %>
-                    </p>
-                    <% })%>
-        </section>
-    </section>
     <section id="right">
         <div class="icons" id="name">Good Morning Avrey</div>
         <div id="displayRight"></div>
         <div class="icons" >Local News</div>
-        <section id="news" class="displayLeft"></section>
+        <section id="news" class="displayLeft">
+            <% newNews.forEach(item => { %>
+                <h2>
+                    <%= item.imgurl %>
+                </h2>
+                <p>
+                    <%= item.title %>
+                </p>
+                <p>
+                    <%= item.description %>
+                </p>
+                <% })%>
+        </section>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../app.js"></script>
 </body>
->>>>>>> 6c2fc491a174a6b30b271db1e75288ae13a5b044
 </html>

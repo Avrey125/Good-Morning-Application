@@ -39,6 +39,18 @@ function Weather (weatherDataResults) {
   this.tempLow = Math.floor(weatherDataResults.temperatureLow);
   this.percentPrecip = Math.floor(weatherDataResults.precipProbability * 100);
   this.averageTemp = Math.floor((this.tempHigh+this.tempLow)/2);
+  this.img_url = '';
+}
+
+Weather.prototype.textToIcon = function() {
+  switch (this.icon) {
+  case 'partly-cloudy-day':
+    this.img_url = 'https://i.imgur.com/zeRtVvS.png'
+    break;
+
+  default:
+    break;
+  }
 }
 
 function News (newsResults) {
@@ -67,48 +79,71 @@ function newsAPIcall(req, res){
   let url = 'https://newsapi.org/v2/top-headlines?' +
           'sources=bbc-news&' +
           `apiKey=${process.env.NEWS_API_KEY}`;
-  superagent.get(url)
+  return superagent.get(url)
     .then(superagentResults => {
       let newsResults = superagentResults.body.articles;
-      newsResults.map(article => {
-        console.log(new News(article))
-      })
-    })
+      let newNews = newsResults.map(article => 
+        new News(article)
+      );
+      // console.log('newNews: ',newNews);
+      console.log('news', newNews.length);
+      return newNews;
+    });
 }
 
 
 //----------------DarkSky API-----------------------------
 function weatherAPICall(req, res){
   let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${47.618042},${-122.3362818,15.04}`
-  superagent.get(url)
+  return superagent.get(url)
     .then(superagentResults => {
       let dailyResults = superagentResults.body.daily.data;
       let weatherArray = dailyResults.map(day => {
-        return new Weather(day);
+        let newDay = new Weather(day);
+        newDay.textToIcon();
+        return newDay;
       })
-      console.log(weatherArray)
-      res.render('pages/show', {weatherArray: weatherArray} );
-      
+      // console.log('weather array: ', weatherArray);
+      console.log('weather', weatherArray.length);
+      return weatherArray;
     })
     .catch(err =>{
       console.log(err);
     })
 }
 
-// -----------------spotify API--------------------
+// -----------------Promise API--------------------
 
+app.get('/show',(req, res)=> {
+  // Shows detailed view of clicked book
+
+  // Query database
+  Promise.all([
+    newsAPIcall(req, res),
+    weatherAPICall(req, res)
+  ])
+    .then(resultsArr => {
+      console.log('All results: ', resultsArr);
+      res.render('pages/show', {
+        weatherArray: resultsArr[1],
+        newNews: resultsArr[0]
+      });
+    })
+    .catch(err => console.error(err));
+});
 
 // Routes
 app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
-app.get('/show', weatherAPICall);
+// app.get('/show', weatherAPICall);
+
 
 app.use('*', (req, res) => res.status(404).send('This route does not exist.'));
 
 
-newsAPIcall();
-weatherAPICall();
+// newsAPIcall();
+// weatherAPICall();
 // listen for requests
 app.listen(PORT, () => console.log('Listening on port:', PORT));
