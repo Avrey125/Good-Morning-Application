@@ -28,3 +28,6 @@ if (JSON.parse(localStorage.getItem('login'))){
 
 $('#loginForm').on('submit', () => storeUserInfo())
 
+
+
+
