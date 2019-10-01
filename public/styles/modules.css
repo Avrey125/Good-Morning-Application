@@ -72,3 +72,9 @@
       transform:translateY(0);
     }
   }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+
