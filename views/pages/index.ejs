@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+        <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/modules.css" />
+    <link href="https://fonts.googleapis.com/css?family=Notable&display=swap" rel="stylesheet">
 </head>
-<body>
-  <h1>hello</h1>
+
+<body id="homeBody">
+    <header>
+    </header>
+    <main id="homePage">
+            <div class="bg"></div>
+            <div class="bg bg2"></div>
+            <div class="bg bg3"></div>
+        <h1 id="morning">Good Morning!</h1>
+            <form action="/show" method="post">
+                <input type="text" name="search" placeholder="Enter Name" required>
+                <div class="box">
+                    <button class="btn btn-white btn-animation-1"type="submit">Click For Info</button>
+                </div>
+            </form>
+    </main>
 </body>
+
 </html>
