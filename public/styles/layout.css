@@ -13,25 +13,49 @@
 }
 
 .displayLeft{
-    border: 10px inset rgb(211, 205, 205);
     padding:10px;
     text-align:center;
     border-radius:50px;
     margin: 10px 10px;
     overflow:auto;
-    box-shadow:         3px 3px 5px 6px #ccc; 
+    /* display:flex;
+    flex-direction: column; */
+    box-shadow:3px 3px 5px 6px #dedede; 
+
 
 } 
 
 #displayRight{
-  border: 10px inset rgb(211, 205, 205);
   padding:10px;
   text-align:center;
   border-radius:50px;
   margin: 10px 10px;
   height:400px;
   overflow:auto;
+  box-shadow:3px 3px 5px 6px #dedede;
 } 
+
+/* #weatherP{
+ 
+
+} */
+
+#weatherData{
+  display:grid;
+  grid-template-areas:
+   "a b c";
+  
+
+
+}
+.a{
+  margin-bottom:30px;
+}
+
+/* .b{
+  margin
+} */
+
 
 .icons{
   width:300px;
@@ -39,13 +63,15 @@
   text-align:center;
   border-radius:50px;
   margin: 10px 10px;
-  font-size:2em;
+  font-size:4em;
+  text-shadow: #dedede 1px 0 10px;
+  color:black;
+  font-family: Anton;
 }
 
 #name{
   width:70%;
   align-self:center;
-  font-family:Shrikhand;
 }
 
 #news{

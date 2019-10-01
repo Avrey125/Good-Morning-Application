@@ -4,10 +4,9 @@
     border:1px solid red;
     display:flex;
     justify-content:space-between;
-    font-family:Shrikhand;
+
     background: rgb(0, 0, 0);
     color:white;
-    /* text-shadow: 2px 2px rgb(240, 248, 247) */
 }
 
 #homeBody{ 
