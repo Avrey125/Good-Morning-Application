@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/modules.css" />
+    <!-- <link rel="stylesheet" href="styles/invert.css" /> -->
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <title>Good Morning Application</title>
+</head>
+<body id="showBody">
+        <section id = "left">
+                <div class="icons toggleDisplay" id="weather">Weather
+                </div>
+                <section class="displayLeft toggleDisplay" id="weatherTop">
+                            <p >
+                                <%= weatherArray[0].forecast %>
+                            </p>
+                            <p class="c">
+                                    <img id ="weatherImg" src="<%= weatherArray[0].img_url %>">
+                            </p>
+                            <p><span>High: <%= weatherArray[0].tempHigh %> °F</span> <span>Low: <%= weatherArray[0].tempLow %> °F</span> </p>
+        
+                </section>
+                <div class='toggleDisplay spotify'>
+                        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZEVXbLRQDuF5jeBp" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                 </div>
+                
+                <section class="displayLeft toggleDisplay" id="weatherData">
+                    <% weatherArray.forEach(item => { %>
+                            <h2 class="a">
+                                <%= item.time %>
+                            </h2>
+                            <p class="b">
+                                <%= item.averageTemp %> °F
+                            </p>
+                            <p class="c">
+                                <img src="<%= item.img_url %>">
+                            </p>
+                            <% })%>
+                </section>
+            </section>
+
+    <section id="right">
+<div id="newsBox">
+    <div class="icons" id="name">Good Morning</div>
+    <button  id="newsButton" type="submit" value="hide/show">Click For News</button>
+</div>        
+<div class="icons" id="name">Good Morning Avrey</div>
+        <div id="displayRight"></div>
+        <div class="icons" >Local News</div>
+        <section id="news" class="displayLeft">
+            <% newNews.forEach(item => { %>
+                <h2>
+                    <img src="<%= item.imgurl %>">
+                </h2>
+                <p id="title">
+                    <%= item.title %>
+                </p>
+                <p id="description">
+                    <%= item.description %>
+                </p>
+                <p id="url">
+                    <a href="<%= item.url %>">Link to Story</a>
+                </p>
+            <form action="/save/<%= item.id %>" method="POST">
+                <button type="submit">Save Story</button>
+            </form>
+                <% })%>
+                <div class='embed-container'>
+                    <iframe src='https://embed.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp' frameborder='0' allowtransparency='true'></iframe>
+                 </div>
+            </section>
+
+        
+    </section>
+
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../app.js"></script>
+</body>
+</html>
