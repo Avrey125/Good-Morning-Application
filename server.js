@@ -110,8 +110,10 @@ function Event (eventResults){
 //         console.log(`${start} - ${event.summary}`);
 
 
-//------------------Click Function------------------------
+//------------------convert ZIP function------------------------
+function convertZipToLatLong(zipcode){
 
+}
 
 
 
@@ -145,38 +147,41 @@ function renderSavedNews(req, res){
 
 
 //----------------DarkSky API-----------------------------
-function weatherAPICall(req, res){
-  let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${47.618042},${-122.3362818}`
-  return superagent.get(url)
+function weatherAPICall(req, res, zipcode){
+  let ZIPurl = `https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/info.json/${zipcode}/degrees`;
+  return superagent.get(ZIPurl)
     .then(superagentResults => {
-      let dailyResults = superagentResults.body.daily.data;
-      let weatherArray = dailyResults.map(day => {
-        let newDay = new Weather(day);
-        newDay.textToIcon();
-        return newDay;
-      })
-      // console.log('weather array: ', weatherArray);
-      // console.log('weather', weatherArray.length);
-      return weatherArray;
-    })
-    .catch(err =>{
-      console.log(err);
+      console.log(superagentResults.body);
+      let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${superagentResults.body.lat},${superagentResults.body.lng}`
+      return superagent.get(url)
+        .then(superagentResults => {
+          let dailyResults = superagentResults.body.daily.data;
+          let weatherArray = dailyResults.map(day => {
+            let newDay = new Weather(day);
+            newDay.textToIcon();
+            return newDay;
+          })
+
+          return weatherArray;
+        })
+        .catch(err =>{
+          console.log(err);
+        })
     })
 }
 
 // -----------------Promise API--------------------
 
-app.get('/show',(req, res)=> {
+app.post('/show',(req, res)=> {
   // Shows detailed view of clicked book
-
   // Query database
   Promise.all([
     newsAPIcall(req, res),
-    weatherAPICall(req, res),
+    weatherAPICall(req, res, req.body.search[2]),
     renderSavedNews(req, res)
   ])
     .then(resultsArr => {
-      console.log('All results: ', resultsArr);
+      // console.log('All results: ', resultsArr);
       res.render('pages/show', {
         weatherArray: resultsArr[1],
         newNews: resultsArr[0],
@@ -188,6 +193,7 @@ app.get('/show',(req, res)=> {
 
 // Routes
 app.get('/', (request, response) => {
+  convertZipToLatLong();
   response.render('pages/index');
 });
 
@@ -206,7 +212,7 @@ app.post('/save/:search_id', (req, res) => {
     .catch(err => console.error(err))
 })
 
-
+app.get('/aboutus', (req, res) => res.render('pages/aboutus'));
 app.use('*', (req, res) => res.status(404).send('This route does not exist.'));
 
 
