@@ -14,7 +14,7 @@
 </head>
 <body id="showBody">
         <section id = "left">
-                <div class="icons toggleDisplay" id="weather">Weather
+                <div class="icons toggleDisplay" id="weather">
                 </div>
                 <section class="displayLeft toggleDisplay" id="weatherTop">
                             <p >
@@ -64,11 +64,11 @@
                     <p id="description">
                         <%= item.description %>
                     </p>
-                    <p id="url">
-                        <a href="<%= item.url %>">Link to Story</a>
+                    <p >
+                        <a id="url" href="<%= item.url %>">Link to Story</a>
                     </p>
                 <form action="/save/<%= item.id %>" method="POST">
-                    <button type="submit">Save Story</button>
+                    <button class="postButton" type="submit">Save Story</button>
                 </form>
                     <% })%>
         </div>
