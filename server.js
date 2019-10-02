@@ -176,7 +176,7 @@ app.get('/show',(req, res)=> {
     renderSavedNews(req, res)
   ])
     .then(resultsArr => {
-      console.log('All results: ', resultsArr);
+      // console.log('All results: ', resultsArr);
       res.render('pages/show', {
         weatherArray: resultsArr[1],
         newNews: resultsArr[0],

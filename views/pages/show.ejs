@@ -46,33 +46,32 @@
             </section>
 
     <section id="right">
-<div id="newsBox">
-    <div class="icons" id="name">Good Morning</div>
-    <button  id="newsButton" type="submit" value="hide/show">Click For News</button>
-</div>        
-        <div id="displayRight"></div>
-        <div class="icons" >Local News</div>
-        <section id="news" class="displayLeft">
-            <% newNews.forEach(item => { %>
-                <h2>
-                    <img src="<%= item.imgurl %>">
-                </h2>
-                <p id="title">
-                    <%= item.title %>
-                </p>
-                <p id="description">
-                    <%= item.description %>
-                </p>
-                <p id="url">
-                    <a href="<%= item.url %>">Link to Story</a>
-                </p>
-            <form action="/save/<%= item.id %>" method="POST">
-                <button type="submit">Save Story</button>
-            </form>
-                <% })%>
-                <div class='embed-container'>
-                    <iframe src='https://embed.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp' frameborder='0' allowtransparency='true'></iframe>
-                 </div>
+        <div id="newsBox">
+            <div class="icons" id="name">Good Morning</div>
+            <button  id="newsButton" type="submit" value="hide/show">Click For News</button>
+        </div>
+        <div id="displayRight" class="toggleDisplay"></div>
+        <div id="displayNews" class="toggleDisplay">
+            <!-- <div class="icons" >News</div> -->
+            <section id="news" class="displayLeft">
+                <% newNews.forEach(item => { %>
+                    <h2>
+                        <img src="<%= item.imgurl %>">
+                    </h2>
+                    <p id="title">
+                        <%= item.title %>
+                    </p>
+                    <p id="description">
+                        <%= item.description %>
+                    </p>
+                    <p id="url">
+                        <a href="<%= item.url %>">Link to Story</a>
+                    </p>
+                <form action="/save/<%= item.id %>" method="POST">
+                    <button type="submit">Save Story</button>
+                </form>
+                    <% })%>
+        </div>
             </section>
 
         

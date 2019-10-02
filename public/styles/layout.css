@@ -1,211 +1,212 @@
 @media only screen and (min-width:720px) {
 
-#left{
+  #left{
+      display:flex;
+      flex-direction:column;
+      margin-left:5%;
+  
+  }
+  
+  #right{
     display:flex;
     flex-direction:column;
-    margin-left:5%;
-
-}
-
-#right{
-  display:flex;
-  flex-direction:column;
-  width:900px;
-  margin-right:5%;
-
-}
-
-.displayLeft{
+    width:900px;
+    margin-right:5%;
+  
+  }
+  
+  .displayLeft{
+      padding:10px;
+      text-align:center;
+      border-radius:50px;
+      margin: 10px 10px;
+      box-shadow:0px 0px 20px 10px #dedede;
+  } 
+  
+  .spotify{
+    display:none;
+    margin-top:50px;
+  }
+  
+  #displayRight{
+    padding:20px;
+    text-align:center;
+    border-radius:50px;
+    margin: 10px 10px;
+    height:600px;
+    box-shadow:0px 0px 20px 10px #dedede;
+  
+  } 
+  
+  #displayNews{
+    display:none;
+  }
+  
+  #weatherData{
+    display:grid;
+    grid-template-areas:
+     "a b c";
+  
+  }
+  
+  #weatherTop{
+    margin-bottom:50px;
+  }
+  
+  .a{
+    margin-bottom:30px;
+  }
+  
+  .icons{
+    width:300px;
     padding:10px;
     text-align:center;
     border-radius:50px;
     margin: 10px 10px;
-    box-shadow:0px 0px 20px 10px #dedede;
-} 
-
-.spotify{
-  display:none;
-  margin-top:50px;
-}
-
-#displayRight{
-  padding:20px;
-  text-align:center;
-  border-radius:50px;
-  margin: 10px 10px;
-  height:600px;
-  box-shadow:0px 0px 20px 10px #dedede;
-
-} 
-
-#displayNews{
-  display:none;
-}
-
-#weatherData{
-  display:grid;
-  grid-template-areas:
-   "a b c";
-
-}
-
-#weatherTop{
-  margin-bottom:50px;
-}
-
-.a{
-  margin-bottom:30px;
-}
-
-.icons{
-  width:300px;
-  padding:10px;
-  text-align:center;
-  border-radius:50px;
-  margin: 10px 10px;
-  font-size:4em;
-  text-shadow: #dedede 1px 0 10px;
-  color:#dedede;
-  font-family: Anton;
-}
-
-#name{
-  width:70%;
-  align-self:center;
-}
-
-#news{
-  height:400px;
-}
-
-#homePage{
-  display:flex;
-  margin:0 auto;
-  flex-direction: column;
-  align-items:center;
-  justify-content: center;
-  width:100%;
-  height:500px;
-}
-
-#morning{
-  font-size:100px;
-  font-family:Notable;
-  margin:20px;
-  text-shadow:0px 10px 10px rgba(0,0,0,0.2);
-}
-
-input{
-  border-radius:50px;
-  padding-left:5px;
-  font-size:30px;
-  margin-top:10px;
-  box-shadow:0px 10px 10px rgba(0,0,0,0.2);
-}
-
-button{
-  border:5px inset rgb(7, 148, 243);
-  font-size:30px;
-  border-radius:50px;
-}
-
-button:hover{
-  background-color: rgb(7, 148, 243);
-}
-
-#nameHome{
-  font-size:20px;
-}
-
-.c img{
-  height:20px;
-  width:20px;
-}
-
-#weatherImg{
-  width:50px;
-  height:50px;
-}
-
-#newsBox{
-  display:flex;
-
-}
-
-#newsButton{
-  background-color:black;
-  color:white;
-  font-size:20px;
-  width:150px; 
-  margin:10px 10px;
-}
-
-#newsButton:hover{
-  background-color:white;
-  color:black;
-}
-/* #news{
-  position:fixed;
-} */
-
-/* courtesy of https://codepen.io/chris22smith/pen/RZogMa  */
-
-.bg {
-  animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, rgb(99, 229, 252) 50%, rgb(7, 148, 243) 50%);
-  bottom:0;
-  left:-50%;
-  opacity:.5;
-  position:fixed;
-  right:-50%;
-  top:0;
-  z-index:-1;
-}
-
-.bg2 {
-  animation-direction:alternate-reverse;
-  animation-duration:4s;
-}
-
-.bg3 {
-  animation-duration:5s;
-}
-
-.content {
-  background-color:rgba(153, 10, 10, 0.8);
-  border-radius:.25em;
-  box-shadow:0 0 .25em rgba(0,0,0,.25);
-  box-sizing:border-box;
-  left:50%;
-  padding:10vmin;
-  position:fixed;
-  text-align:center;
-  top:50%;
-  transform:translate(-50%, -50%);
-}
-
-
-@keyframes slide {
-  0% {
-    transform:translateX(-25%);
+    font-size:4em;
+    text-shadow: #dedede 1px 0 10px;
+    color:#dedede;
+    font-family: Anton;
   }
-  100% {
-    transform:translateX(25%);
+  
+  #name{
+    width:70%;
+    align-self:center;
   }
-}
+  
+  #news{
+    height:400px;
+  }
+  
+  #homePage{
+    display:flex;
+    margin:0 auto;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    width:100%;
+    height:500px;
+  }
+  
+  #morning{
+    font-size:100px;
+    font-family:Notable;
+    margin:20px;
+    text-shadow:0px 10px 10px rgba(0,0,0,0.2);
+  }
+  
+  input{
+    border-radius:50px;
+    padding-left:5px;
+    font-size:30px;
+    margin-top:10px;
+    box-shadow:0px 10px 10px rgba(0,0,0,0.2);
+  }
+  
+  button{
+    border:5px inset rgb(7, 148, 243);
+    font-size:30px;
+    border-radius:50px;
+  }
+  
+  button:hover{
+    background-color: rgb(7, 148, 243);
+  }
+  
+  #nameHome{
+    font-size:20px;
+  }
+  
+  .c img{
+    height:20px;
+    width:20px;
+  }
+  
+  #weatherImg{
+    width:50px;
+    height:50px;
+  }
+  
+  #newsBox{
+    display:flex;
+  
+  }
+  
+  #newsButton{
+    background-color:black;
+    color:white;
+    font-size:20px;
+    width:150px; 
+    margin:10px 10px;
+  }
+  
+  #newsButton:hover{
+    background-color:white;
+    color:black;
+  }
+  /* #news{
+    position:fixed;
+  } */
+  
+  /* courtesy of https://codepen.io/chris22smith/pen/RZogMa  */
+  
+  .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, rgb(99, 229, 252) 50%, rgb(7, 148, 243) 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:5s;
+  }
+  
+  .content {
+    background-color:rgba(153, 10, 10, 0.8);
+    border-radius:.25em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+  
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }
+  
+  }
 
-#right h2 img {
-  float: left;
-  width: 200px;
-  height: 75px;
- }
- #right #news button {
-  margin: auto;
-  margin-left: 150px;
- }
- #right #news #title {
-   
- }
- #right #news #description {
-  width: 100px;
- }
+  #right h2 img {
+    float: left;
+    width: 200px;
+    height: 75px;
+   }
+   #right #news button {
+    margin: auto;
+    margin-left: 150px;
+   }
+   #right #news #title {
+   }
+   #right #news #description {
+    width: 100px;
+   }
