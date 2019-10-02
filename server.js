@@ -19,14 +19,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
 // Database Setup: if you've got a good DATABASE_URL
-if (process.env.DATABASE_URL) {
-  const client = new pg.Client(process.env.DATABASE_URL);
-  client.connect();
-  client.on('error', err => console.error(err));
-}
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
+
+//Method Override
+const methodOverride = require('method-override');
+
+app.use(methodOverride ((request, response) => {
+  if(request.body && typeof request.body === 'object' && '_method' in request.body){
+    let method = request.body._method;
+    delete request.body._method;
+    return method;
+  }
+}))
+
+//Globals
+let currentNewsArray = [];
 
 
 
@@ -68,19 +80,23 @@ Weather.prototype.textToIcon = function() {
   case 'cloudy':
     this.img_url = 'https://i.imgur.com/rblW3u0.png'
     break;
+  case 'clear-day':
+    this.img_url = 'https://i.imgur.com/5XpmW64.png'
+    break;
 
   default:
     break;
   }
 }
 
-function News (newsResults) {
+function News (newsResults, index) {
   this.source = newsResults.source.id;
   this.author = newsResults.author;
   this.title = newsResults.title;
   this.description = newsResults.description;
   this.url = newsResults.url;
   this.imgurl = newsResults.urlToImage;
+  this.id = index;
 }
 
 function Event (eventResults){
@@ -111,19 +127,26 @@ function newsAPIcall(req, res){
   return superagent.get(url)
     .then(superagentResults => {
       let newsResults = superagentResults.body.articles;
-      let newNews = newsResults.map(article => 
-        new News(article)
-      );
+      currentNewsArray = newsResults.map((article, index) => new News(article, index));
       // console.log('newNews: ',newNews);
-      console.log('news', newNews.length);
-      return newNews;
+      // console.log('news', currentNewsArray.length);
+      return currentNewsArray;
     });
+}
+
+function renderSavedNews(req, res){
+  let sql = 'SELECT * FROM news;';
+  client.query(sql).then(sqlResults => {
+    return(sqlResults.rows);
+
+  })
+
 }
 
 
 //----------------DarkSky API-----------------------------
 function weatherAPICall(req, res){
-  let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${47.618042},${-122.3362818,15.04}`
+  let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${47.618042},${-122.3362818}`
   return superagent.get(url)
     .then(superagentResults => {
       let dailyResults = superagentResults.body.daily.data;
@@ -133,7 +156,7 @@ function weatherAPICall(req, res){
         return newDay;
       })
       // console.log('weather array: ', weatherArray);
-      console.log('weather', weatherArray.length);
+      // console.log('weather', weatherArray.length);
       return weatherArray;
     })
     .catch(err =>{
@@ -149,13 +172,15 @@ app.get('/show',(req, res)=> {
   // Query database
   Promise.all([
     newsAPIcall(req, res),
-    weatherAPICall(req, res)
+    weatherAPICall(req, res),
+    renderSavedNews(req, res)
   ])
     .then(resultsArr => {
       console.log('All results: ', resultsArr);
       res.render('pages/show', {
         weatherArray: resultsArr[1],
-        newNews: resultsArr[0]
+        newNews: resultsArr[0],
+        savedNews: resultsArr[2]
       });
     })
     .catch(err => console.error(err));
@@ -166,7 +191,20 @@ app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
-// app.get('/show', weatherAPICall);
+app.post('/save/:search_id', (req, res) => {
+  let currentIndex = req.params.search_id;
+  let {source, author, title, description, url, imgurl} = currentNewsArray[currentIndex];
+  let sql = 'INSERT INTO news (source, author, title, description, url, imgurl) VALUES ($1, $2, $3, $4, $5, $6);';
+  let values = [source, author, title, description, url, imgurl];
+  console.log(values);
+  client.query(sql, values)
+    .then(sqlResults =>{
+      console.log(`Saved news article #${currentIndex}`);
+      // res.redirect('pages/show')
+    })
+
+    .catch(err => console.error(err))
+})
 
 
 app.use('*', (req, res) => res.status(404).send('This route does not exist.'));
