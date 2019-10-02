@@ -108,6 +108,11 @@ button:hover{
   width:20px;
 }
 
+#weatherImg{
+  width:50px;
+  height:50px;
+}
+
 /* courtesy of https://codepen.io/chris22smith/pen/RZogMa  */
 
 .bg {
