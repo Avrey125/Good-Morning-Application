@@ -21,7 +21,7 @@ if (JSON.parse(localStorage.getItem('login'))){
   // $('#loginForm').toggleClass('hidden');
   $('#name').attr('value', login.name);
   $('#gmail').attr('value', login.gmail);
-  $('button').text('Welcome Back!')
+  $('.btn').text('Welcome Back!')
   renderCalendar();
   $('#name').text('Good Morning ' + login.name)
 }
