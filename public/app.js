@@ -11,7 +11,7 @@ function storeUserInfo(e){
 
 function renderCalendar(){
   let gmail = JSON.parse(localStorage.getItem('login')).gmail
-  $('#displayRight').append(`<iframe src="https://calendar.google.com/calendar/embed?src=${gmail}%40gmail.com&ctz=America%2FLos_Angeles" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>`)
+  $('#displayRight').append(`<iframe src="https://calendar.google.com/calendar/embed?src=${gmail}%40gmail.com&ctz=America%2FLos_Angeles" style="border: 0" width="500" height="400" frameborder="0" scrolling="no"></iframe>`)
 }
 if (JSON.parse(localStorage.getItem('login'))){
   let login = {
@@ -27,7 +27,13 @@ if (JSON.parse(localStorage.getItem('login'))){
 }
 $('#loginForm').on('submit', () => storeUserInfo())
 
-<<<<<<< HEAD
+$(document).ready(function(){
+  $('#newsButton').click(function(event) {      
+       $('.toggleDisplay').toggle();
+  });
+});
+
+
 function renderIndexPage(){
   $('#')
 }
@@ -37,8 +43,7 @@ $()
 renderIndexPage();
 
 renderCalendar();
-=======
 
 
 
->>>>>>> 52a1378b87bf165de3cc23135e3915ad3de52099
+
