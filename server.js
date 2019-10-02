@@ -172,19 +172,19 @@ app.get('/', (request, response) => {
   response.render('pages/index');
 });
 
-app.get('/save/:search_id', (req, res) => {
+app.post('/save/:search_id', (req, res) => {
   let currentIndex = req.params.search_id;
   let {source, author, title, description, url, imgurl} = currentNewsArray[currentIndex];
   let sql = 'INSERT INTO news (source, author, title, description, url, imgurl) VALUES ($1, $2, $3, $4, $5, $6);';
   let values = [source, author, title, description, url, imgurl];
   console.log(values);
-  // client.query(sql, values)
-  //   .then(sqlResults =>{
-  //     console.log(`Saved news article #${currentIndex}`);
-  //     // res.redirect('pages/show')
-  //   })
+  client.query(sql, values)
+    .then(sqlResults =>{
+      console.log(`Saved news article #${currentIndex}`);
+      // res.redirect('pages/show')
+    })
       
-  //   .catch(err => console.error(err))
+    .catch(err => console.error(err))
 })
 
 

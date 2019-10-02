@@ -57,7 +57,7 @@
                 <p>
                     <%= item.description %>
                 </p>
-            <form action="/save/<%= item.id %>" method='get'>
+            <form action="/save/<%= item.id %>" method="POST">
                 <button type="submit">Save Story</button>
             </form>
                 <% })%>
