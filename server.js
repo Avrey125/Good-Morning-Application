@@ -126,6 +126,15 @@ function newsAPIcall(req, res){
     });
 }
 
+function renderSavedNews(req, res){
+  let sql = 'SELECT * FROM news;';
+  client.query(sql).then(sqlResults => {
+    return(sqlResults.rows);
+
+  })
+
+}
+
 
 //----------------DarkSky API-----------------------------
 function weatherAPICall(req, res){
@@ -155,13 +164,15 @@ app.get('/show',(req, res)=> {
   // Query database
   Promise.all([
     newsAPIcall(req, res),
-    weatherAPICall(req, res)
+    weatherAPICall(req, res),
+    renderSavedNews(req, res)
   ])
     .then(resultsArr => {
       console.log('All results: ', resultsArr);
       res.render('pages/show', {
         weatherArray: resultsArr[1],
-        newNews: resultsArr[0]
+        newNews: resultsArr[0],
+        savedNews: resultsArr[2]
       });
     })
     .catch(err => console.error(err));
@@ -183,7 +194,7 @@ app.post('/save/:search_id', (req, res) => {
       console.log(`Saved news article #${currentIndex}`);
       // res.redirect('pages/show')
     })
-      
+
     .catch(err => console.error(err))
 })
 

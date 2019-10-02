@@ -49,13 +49,16 @@
         <section id="news" class="displayLeft">
             <% newNews.forEach(item => { %>
                 <h2>
-                    <%= item.imgurl %>
+                    <img src="<%= item.imgurl %>">
                 </h2>
-                <p>
+                <p id="title">
                     <%= item.title %>
                 </p>
-                <p>
+                <p id="description">
                     <%= item.description %>
+                </p>
+                <p id="url">
+                    <a href="<%= item.url %>">Link to Story</a>
                 </p>
             <form action="/save/<%= item.id %>" method="POST">
                 <button type="submit">Save Story</button>

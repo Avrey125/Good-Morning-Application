@@ -1,4 +1,10 @@
+DROP DATABASE goodmorning; 
+CREATE DATABASE goodmorning;
+
+\c goodmorning;
+
 DROP TABLE IF EXISTS news;
+
 
 CREATE TABLE news(
   id SERIAL PRIMARY KEY,
