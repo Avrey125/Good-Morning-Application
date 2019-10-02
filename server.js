@@ -212,7 +212,7 @@ app.post('/save/:search_id', (req, res) => {
     .catch(err => console.error(err))
 })
 
-
+app.get('/aboutus', (req, res) => res.render('pages/aboutus'));
 app.use('*', (req, res) => res.status(404).send('This route does not exist.'));
 
 
