@@ -52,19 +52,24 @@
         </div>
         <div id="displayRight" class="toggleDisplay"></div>
         <div id="displayNews" class="toggleDisplay">
-            <div class="icons" >News</div>
+            <!-- <div class="icons" >News</div> -->
             <section id="news" class="displayLeft">
                 <% newNews.forEach(item => { %>
                     <h2>
-                        <%= item.imgurl %>
+                        <img src="<%= item.imgurl %>">
                     </h2>
-                    <p>
+                    <p id="title">
                         <%= item.title %>
                     </p>
-                    <p>
+                    <p id="description">
                         <%= item.description %>
                     </p>
-                    <button>Save Story</button>
+                    <p id="url">
+                        <a href="<%= item.url %>">Link to Story</a>
+                    </p>
+                <form action="/save/<%= item.id %>" method="POST">
+                    <button type="submit">Save Story</button>
+                </form>
                     <% })%>
         </div>
             </section>

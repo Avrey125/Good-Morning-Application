@@ -196,3 +196,18 @@
   }
   
   }
+
+  #right h2 img {
+    float: left;
+    width: 200px;
+    height: 75px;
+   }
+   #right #news button {
+    margin: auto;
+    margin-left: 150px;
+   }
+   #right #news #title {
+   }
+   #right #news #description {
+    width: 100px;
+   }
