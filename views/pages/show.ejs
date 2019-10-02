@@ -21,7 +21,7 @@
                                 <%= weatherArray[0].forecast %>
                             </p>
                             <p class="c">
-                                    <img src="<%= weatherArray[0].img_url %>">
+                                    <img id ="weatherImg" src="<%= weatherArray[0].img_url %>">
                             </p>
                             <p><span>High: <%= weatherArray[0].tempHigh %> °F</span> <span>Low: <%= weatherArray[0].tempLow %> °F</span> </p>
         
@@ -61,7 +61,11 @@
                 <button type="submit">Save Story</button>
             </form>
                 <% })%>
-        </section>
+                <div class='embed-container'>
+                    <iframe src='https://embed.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp' frameborder='0' allowtransparency='true'></iframe>
+                 </div>
+            </section>
+        
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../app.js"></script>
