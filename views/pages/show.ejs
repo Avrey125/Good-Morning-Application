@@ -14,9 +14,9 @@
 </head>
 <body id="showBody">
         <section id = "left">
-                <div class="icons" id="weather">Weather
+                <div class="icons toggleDisplay" id="weather">Weather
                 </div>
-                <section class="displayLeft">
+                <section class="displayLeft toggleDisplay" id="weatherTop">
                             <p >
                                 <%= weatherArray[0].forecast %>
                             </p>
@@ -26,8 +26,11 @@
                             <p><span>High: <%= weatherArray[0].tempHigh %> °F</span> <span>Low: <%= weatherArray[0].tempLow %> °F</span> </p>
         
                 </section>
-                <div class="icons" id="temp">Forecast</div>
-                <section class="displayLeft" id="weatherData">
+                <div class='toggleDisplay spotify'>
+                        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZEVXbLRQDuF5jeBp" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                 </div>
+                
+                <section class="displayLeft toggleDisplay" id="weatherData">
                     <% weatherArray.forEach(item => { %>
                             <h2 class="a">
                                 <%= item.time %>
@@ -43,7 +46,11 @@
             </section>
 
     <section id="right">
-        <div class="icons" id="name">Good Morning Avrey</div>
+<div id="newsBox">
+    <div class="icons" id="name">Good Morning</div>
+    <button  id="newsButton" type="submit" value="hide/show">Click For News</button>
+</div>        
+<div class="icons" id="name">Good Morning Avrey</div>
         <div id="displayRight"></div>
         <div class="icons" >Local News</div>
         <section id="news" class="displayLeft">
@@ -68,8 +75,12 @@
                     <iframe src='https://embed.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp' frameborder='0' allowtransparency='true'></iframe>
                  </div>
             </section>
+
         
     </section>
+
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="../app.js"></script>
 </body>

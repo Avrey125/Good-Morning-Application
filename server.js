@@ -110,6 +110,14 @@ function Event (eventResults){
 //         console.log(`${start} - ${event.summary}`);
 
 
+//------------------Click Function------------------------
+
+
+
+
+
+
+
 
 //------------------News API.org -------------------------
 function newsAPIcall(req, res){
