@@ -4,6 +4,7 @@ function storeUserInfo(e){
   let login = {
     name: $('#name').val(),
     gmail: $('#gmail').val(),
+    zipcode: $('#zipcode').val()
   }
   console.log('click')
   localStorage.setItem('login', JSON.stringify(login))
@@ -16,11 +17,13 @@ function renderCalendar(){
 if (JSON.parse(localStorage.getItem('login'))){
   let login = {
     name: JSON.parse(localStorage.getItem('login')).name,
-    gmail: JSON.parse(localStorage.getItem('login')).gmail
+    gmail: JSON.parse(localStorage.getItem('login')).gmail,
+    zipcode: JSON.parse(localStorage.getItem('login')).zipcode
   }
   // $('#loginForm').toggleClass('hidden');
   $('#name').attr('value', login.name);
   $('#gmail').attr('value', login.gmail);
+  $('#zipcode').attr('value', login.zipcode);
   $('.btn').text('Welcome Back!')
   renderCalendar();
   $('#name').text('Good Morning ' + login.name)
@@ -28,22 +31,9 @@ if (JSON.parse(localStorage.getItem('login'))){
 $('#loginForm').on('submit', () => storeUserInfo())
 
 $(document).ready(function(){
-  $('#newsButton').click(function(event) {      
-       $('.toggleDisplay').toggle();
+  $('#newsButton').click(function(event) {
+    $('.toggleDisplay').toggle();
   });
 });
-
-
-function renderIndexPage(){
-  $('#')
-}
-
-$()
-
-renderIndexPage();
-
-renderCalendar();
-
-
 
 
