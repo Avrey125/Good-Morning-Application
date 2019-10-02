@@ -3,7 +3,7 @@
 function storeUserInfo(e){
   let login = {
     name: $('#name').val(),
-    gmail: $('#gmail').val()
+    gmail: $('#gmail').val(),
   }
   console.log('click')
   localStorage.setItem('login', JSON.stringify(login))
@@ -25,7 +25,6 @@ if (JSON.parse(localStorage.getItem('login'))){
   renderCalendar();
   $('#name').text('Good Morning ' + login.name)
 }
-
 $('#loginForm').on('submit', () => storeUserInfo())
 
 $(document).ready(function(){
@@ -33,6 +32,17 @@ $(document).ready(function(){
        $('.toggleDisplay').toggle();
   });
 });
+
+
+function renderIndexPage(){
+  $('#')
+}
+
+$()
+
+renderIndexPage();
+
+renderCalendar();
 
 
 
