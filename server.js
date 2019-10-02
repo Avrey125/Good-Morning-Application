@@ -26,6 +26,17 @@ client.on('error', err => console.error(err));
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
 
+//Method Override
+const methodOverride = require('method-override');
+
+app.use(methodOverride ((request, response) => {
+  if(request.body && typeof request.body === 'object' && '_method' in request.body){
+    let method = request.body._method;
+    delete request.body._method;
+    return method;
+  }
+}))
+
 //Globals
 let currentNewsArray = [];
 
@@ -110,7 +121,7 @@ function newsAPIcall(req, res){
       let newsResults = superagentResults.body.articles;
       currentNewsArray = newsResults.map((article, index) => new News(article, index));
       // console.log('newNews: ',newNews);
-      console.log('news', currentNewsArray.length);
+      // console.log('news', currentNewsArray.length);
       return currentNewsArray;
     });
 }
@@ -128,7 +139,7 @@ function weatherAPICall(req, res){
         return newDay;
       })
       // console.log('weather array: ', weatherArray);
-      console.log('weather', weatherArray.length);
+      // console.log('weather', weatherArray.length);
       return weatherArray;
     })
     .catch(err =>{
@@ -163,13 +174,17 @@ app.get('/', (request, response) => {
 
 app.get('/save/:search_id', (req, res) => {
   let currentIndex = req.params.search_id;
-  console.log(currentNewsArray[currentIndex])
   let {source, author, title, description, url, imgurl} = currentNewsArray[currentIndex];
-  let sql = 'INSERT INTO news(source, author, title, description, url, imgurl) VALUES ($1, $2, $3, $4, $5, $6);';
+  let sql = 'INSERT INTO news (source, author, title, description, url, imgurl) VALUES ($1, $2, $3, $4, $5, $6);';
   let values = [source, author, title, description, url, imgurl];
-  client.query(sql, values)
-    .then(sqlResults => console.log(`Saved news article #${currentIndex}`))
-
+  console.log(values);
+  // client.query(sql, values)
+  //   .then(sqlResults =>{
+  //     console.log(`Saved news article #${currentIndex}`);
+  //     // res.redirect('pages/show')
+  //   })
+      
+  //   .catch(err => console.error(err))
 })
 
 
