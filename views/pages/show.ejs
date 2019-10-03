@@ -55,21 +55,25 @@
             <!-- <div class="icons" >News</div> -->
             <section id="news" class="displayLeft">
                 <% newNews.forEach(item => { %>
-                    <h2 id="newsImg">
+                    <section id="newsBlock">
+
                         <img src="<%= item.imgurl %>">
-                    </h2>
+
                     <p id="title">
                         <%= item.title %>
                     </p>
                     <p id="description">
                         <%= item.description %>
                     </p>
+                    <div>
                     <p >
                         <a id="url" href="<%= item.url %>">Link to Story</a>
                     </p>
                 <form action="/save/<%= item.id %>" method="POST">
                     <button class="postButton" type="submit">Save Story</button>
                 </form>
+            </div>
+            </section>
                     <% })%>
         </div>
             </section>
