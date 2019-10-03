@@ -14,7 +14,7 @@
 </head>
 <body id="showBody">
         <section id = "left">
-                <div class="icons toggleDisplay" id="weather">Weather
+                <div class="icons toggleDisplay" id="weather">
                 </div>
                 <section class="displayLeft toggleDisplay" id="weatherTop">
                             <p >
@@ -56,26 +56,24 @@
             <section id="news" class="displayLeft">
                 <% newNews.forEach(item => { %>
                     <section id="newsBlock">
-                        <h2>
-                            <img src="<%= item.imgurl %>">
-                        </h2>
-                        <section id="title-descrip">
-                            <p id="title">
-                                <%= item.title %>
-                            </p>
-                            <p id="description">
-                                <%= item.description %>
-                            </p>
-                        </section>
-                        <div id="buttons">
-                            <p id="url">
-                                <a href="<%= item.url %>">Link to Story</a>
-                            </p>
-                            <form action="/save/<%= item.id %>" method="POST">
-                                <button type="submit">Save Story</button>
-                            </form>
-                        </div>
-                </section>
+
+                        <img src="<%= item.imgurl %>">
+
+                    <p id="title">
+                        <%= item.title %>
+                    </p>
+                    <p id="description">
+                        <%= item.description %>
+                    </p>
+                    <div class="sideBySide">
+                    <button id="url">
+                        <a href="<%= item.url %>">Link to Story</a>
+                    </button>
+                <form action="/save/<%= item.id %>" method="POST">
+                    <button class="postButton" type="submit">Save Story</button>
+                </form>
+            </div>
+            </section>
                     <% })%>
         </div>
             </section>
