@@ -95,7 +95,7 @@
   
   #newsBox{
     display:flex;
-    overflow: scroll;
+    /* overflow: scroll; */
   
   }
   

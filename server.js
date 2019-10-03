@@ -140,7 +140,13 @@ function renderSavedNews(req, res){
   let sql = 'SELECT * FROM news;';
   return client.query(sql)
     .then(sqlResults => {
-      return sqlResults.rows;
+      console.log(sqlResults.rowCount)
+      if(sqlResults.rowCount > 0){
+        return sqlResults.rows;
+      }
+      else{
+        return [];
+      }
 
     })
     .catch(err => console.log(err));
