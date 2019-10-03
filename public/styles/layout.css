@@ -26,24 +26,20 @@
   
   #displayNews{
     display:none;
-    /* overflow:auto; */
   }
   
   #weatherData{
     display:grid;
     grid-template-areas:
      "a b c";
+    height:320px;
   }
   
   #weatherTop{
     margin-bottom:50px;
   }
-  
-  #name{
-    width:70%;
-    align-self:center;
-  }
-  
+
+
   #news{
     height:400px;
     overflow:auto;
@@ -78,13 +74,17 @@
   }
   
   button{
-    /* border:5px inset rgb(7, 148, 243); */
     font-size:30px;
     border-radius:50px;
   }
   
   #nameHome{
     font-size:20px;
+  }
+
+
+  #name{
+    width:50%;;
   }
   
   #weatherImg{
