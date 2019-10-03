@@ -247,10 +247,23 @@
   }
   #right #news #title {
   }
-  #right #news #description {
-    width: 100px;
-  }
-  
+
   iframe{
     border-radius:8px;
+  }
+
+  #newsBlock {
+    display: grid;
+    grid-template-columns: 400px 400px;
+    grid-template-rows: 75px 75px 75px;
+  }
+
+  #newsBlock img{
+    grid-row: 1 / 4;
+    height: 225px;
+    width: 400px;
+  }
+  #newsBlock #title {
+    font-weight: bold;
+    font-size: 2em;
   }
