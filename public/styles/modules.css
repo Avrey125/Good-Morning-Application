@@ -8,6 +8,10 @@
     box-shadow:0px 0px 20px 10px #dedede;
 } 
 
+.hidden {
+  display: none;
+}
+
 .spotify{
   display:none;
   margin-top:50px;
