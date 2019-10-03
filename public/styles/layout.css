@@ -10,6 +10,7 @@
     flex-direction:column;
     width:900px;
     margin-right:5%;
+    /* overflow: scroll; */
   
   }
   
@@ -94,6 +95,7 @@
   
   #newsBox{
     display:flex;
+    overflow: scroll;
   
   }
   
@@ -160,6 +162,7 @@
     width: 400px;
     border-radius: 25px;
   }
+
   #newsBlock #title {
     font-weight: bold;
     font-size: 2em;
@@ -169,4 +172,47 @@
     margin-top:20px;
     height:20px;
     width:80px;
+  }
+
+  #img-head {
+    width: 800px;
+    height: 500px;
+    text-align: center;
+    margin-left: 325px;
+  }
+
+  #aboutus-body{
+    width: 100%;
+    background-color: black;
+    color: white;
+  }
+
+  #aboutus-header{
+    font-size: 40px;
+    text-align: center;
+  }
+
+  #Corey {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  #chris {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  #Avrey {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  #Darrik {
+    font-size: 30px;
+    text-align: center;
+  }
+
+
+  ul li {
+    margin-left: 562px;
   }
