@@ -12,6 +12,7 @@
     flex-direction:column;
     width:900px;
     margin-right:5%;
+    /* overflow: scroll; */
   
   }
   
@@ -129,6 +130,7 @@
   
   #newsBox{
     display:flex;
+    overflow: scroll;
   
   }
   
@@ -144,9 +146,10 @@
     background-color:white;
     color:black;
   }
-  /* #news{
-    position:fixed;
-  } */
+
+  #news{
+    overflow: auto;
+  }  
   
   /* courtesy of https://codepen.io/chris22smith/pen/RZogMa  */
   
@@ -197,16 +200,56 @@
   }
 
   #right h2 img {
-    float: left;
-    width: 200px;
-    height: 75px;
+    /* float: left; */
+    /* /* width: 400px; */
+    height: 200px;
+    /* padding: 5px; */
+    flex-direction: row row-reverse column column-reverse;
+    margin-right: 600px;
+    z-index: -5;
    }
+
    #right #news button {
     margin: auto;
-    margin-left: 150px;
+    margin-left: 400px;
    }
+
    #right #news #title {
+    /* float: right; */
+    font-size: 20px;
+    text-align: center;
+    margin-left: 400px;
+    margin-top: -100px;
+    align-self: flex-start;
+    z-index: 1;
    }
+
    #right #news #description {
-    width: 100px;
+    width: 400px;
+    /* float: right; */
+    margin-left: 425px;    
+    margin-top: 0px;
    }
+
+   #title-descrip {
+    flex-direction: column;
+    /* margin-top: -80px; */
+    align-items: flex-start;
+   }
+
+   #newsBlock {
+    display: grid;
+    grid-template-areas:
+      'header header header header header header'
+      'menu main main main right right'
+      'menu footer footer footer footer footer';
+    grid-gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+   }
+
+   #newsBlock img{
+      /* grid-row: 1 / 4; */
+   }
+
+
