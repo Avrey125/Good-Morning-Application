@@ -24,10 +24,12 @@ if (JSON.parse(localStorage.getItem('login'))){
   $('#name').attr('value', login.name);
   $('#gmail').attr('value', login.gmail);
   $('#zipcode').attr('value', login.zipcode);
-  $('.btn').text('Welcome Back!')
   renderCalendar();
   $('#name').text('Good Morning ' + login.name)
 }
+$('#newsSaved').on('click', (e) => {
+  $('.saved').toggleClass('hidden');
+})
 $('#loginForm').on('submit', () => storeUserInfo())
 
 $(document).ready(function(){

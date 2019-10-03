@@ -138,10 +138,18 @@ function newsAPIcall(req, res){
 
 function renderSavedNews(req, res){
   let sql = 'SELECT * FROM news;';
-  client.query(sql).then(sqlResults => {
-    return(sqlResults.rows);
+  return client.query(sql)
+    .then(sqlResults => {
+      console.log(sqlResults.rowCount)
+      if(sqlResults.rowCount > 0){
+        return sqlResults.rows;
+      }
+      else{
+        return [];
+      }
 
-  })
+    })
+    .catch(err => console.log(err));
 
 }
 
@@ -152,21 +160,34 @@ function weatherAPICall(req, res, zipcode){
   return superagent.get(ZIPurl)
     .then(superagentResults => {
       console.log(superagentResults.body);
-      let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${superagentResults.body.lat},${superagentResults.body.lng}`
-      return superagent.get(url)
-        .then(superagentResults => {
-          let dailyResults = superagentResults.body.daily.data;
-          let weatherArray = dailyResults.map(day => {
-            let newDay = new Weather(day);
-            newDay.textToIcon();
-            return newDay;
-          })
+  // superagentResults.body.lat
+  // superagentResults.body.lng
 
-          return weatherArray;
+    let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${superagentResults.body.lat},${superagentResults.body.lng}`
+    return superagent.get(url)
+      .then(superagentResults => {
+        let dailyResults = superagentResults.body.daily.data;
+        let weatherArray = dailyResults.map(day => {
+          let newDay = new Weather(day);
+          newDay.textToIcon();
+          return newDay;
         })
-        .catch(err =>{
-          console.log(err);
-        })
+
+        return weatherArray;
+      })
+      .catch(err =>{
+        console.log(err);
+      })
+    })
+}
+
+//---------------Delete News ---------------------
+function deleteNews(req, res) {
+  let SQL = 'DELETE FROM news WHERE id=$1;';
+  let values = [req.params.id];
+  client.query(SQL, values)
+    .then(sqlResults => {
+      console.log('News Deleted')
     })
 }
 
@@ -211,6 +232,8 @@ app.post('/save/:search_id', (req, res) => {
 
     .catch(err => console.error(err))
 })
+
+app.delete('/delete/:id', deleteNews);
 
 app.get('/aboutus', (req, res) => res.render('pages/aboutus'));
 app.use('*', (req, res) => res.status(404).send('This route does not exist.'));

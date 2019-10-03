@@ -27,7 +27,7 @@
         
                 </section>
                 <div class='toggleDisplay spotify'>
-                        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZEVXbLRQDuF5jeBp" width="300" height="500" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZEVXbLRQDuF5jeBp" width="300" height="450" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                  </div>
                 
                 <section class="displayLeft toggleDisplay" id="weatherData">
@@ -53,23 +53,52 @@
         <div id="displayRight" class="toggleDisplay"></div>
         <div id="displayNews" class="toggleDisplay">
             <!-- <div class="icons" >News</div> -->
-            <section id="news" class="displayLeft">
-                <% newNews.forEach(item => { %>
-                    <h2>
+            <button  id="newsSaved" type="click">Click For Saved Articles</button>
+            <section id="news" class="displayLeft saved hidden">
+                <% savedNews.forEach(item => { %>
+                    <section id="newsBlock">
+
                         <img src="<%= item.imgurl %>">
-                    </h2>
+
                     <p id="title">
                         <%= item.title %>
                     </p>
                     <p id="description">
                         <%= item.description %>
                     </p>
-                    <p >
-                        <a id="url" href="<%= item.url %>">Link to Story</a>
+                    <div class="sideBySide">
+                    <button id="url">
+                        <a href="<%= item.url %>">Link to Story</a>
+                    </button>
+                <form action="/delete/<%= item.id %>" method="POST">
+                    <input type="hidden" name="_method" value="delete">
+                    <button class="postButton" type="submit">Delete Story</button>
+                </form>
+            </div>
+            </section>
+                    <% })%>
+            </section>
+            <section id="news" class="displayLeft saved">
+                <% newNews.forEach(item => { %>
+                    <section id="newsBlock">
+
+                        <img src="<%= item.imgurl %>">
+
+                    <p id="title">
+                        <%= item.title %>
                     </p>
+                    <p id="description">
+                        <%= item.description %>
+                    </p>
+                    <div class="sideBySide">
+                    <button id="url">
+                        <a href="<%= item.url %>">Link to Story</a>
+                    </button>
                 <form action="/save/<%= item.id %>" method="POST">
                     <button class="postButton" type="submit">Save Story</button>
                 </form>
+            </div>
+            </section>
                     <% })%>
         </div>
             </section>
