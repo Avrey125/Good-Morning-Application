@@ -55,21 +55,23 @@
             <!-- <div class="icons" >News</div> -->
             <section id="news" class="displayLeft">
                 <% newNews.forEach(item => { %>
-                    <h2>
+                    <h2 id="imgCol">
                         <img src="<%= item.imgurl %>">
                     </h2>
-                    <p id="title">
-                        <%= item.title %>
-                    </p>
-                    <p id="description">
-                        <%= item.description %>
-                    </p>
-                    <p >
-                        <a id="url" href="<%= item.url %>">Link to Story</a>
-                    </p>
-                <form action="/save/<%= item.id %>" method="POST">
-                    <button class="postButton" type="submit">Save Story</button>
-                </form>
+                    <section id="straight">
+                        <p id="title">
+                            <%= item.title %>
+                        </p>
+                        <p id="description">
+                            <%= item.description %>
+                        </p>
+                        <p >
+                            <a id="url" href="<%= item.url %>">Link to Story</a>
+                        </p>
+                    <form action="/save/<%= item.id %>" method="POST">
+                        <button class="postButton" type="submit">Save Story</button>
+                    </form>
+                </section>
                     <% })%>
         </div>
             </section>
