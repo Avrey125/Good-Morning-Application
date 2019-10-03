@@ -27,6 +27,9 @@ if (JSON.parse(localStorage.getItem('login'))){
   renderCalendar();
   $('#name').text('Good Morning ' + login.name)
 }
+$('#newsSaved').on('click', (e) => {
+  $('.saved').toggleClass('hidden');
+})
 $('#loginForm').on('submit', () => storeUserInfo())
 
 $(document).ready(function(){
