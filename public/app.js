@@ -24,7 +24,6 @@ if (JSON.parse(localStorage.getItem('login'))){
   $('#name').attr('value', login.name);
   $('#gmail').attr('value', login.gmail);
   $('#zipcode').attr('value', login.zipcode);
-  $('.btn').text('Welcome Back!')
   renderCalendar();
   $('#name').text('Good Morning ' + login.name)
 }

@@ -65,10 +65,10 @@
                     <p id="description">
                         <%= item.description %>
                     </p>
-                    <div>
-                    <p >
-                        <a id="url" href="<%= item.url %>">Link to Story</a>
-                    </p>
+                    <div class="sideBySide">
+                    <button id="url">
+                        <a href="<%= item.url %>">Link to Story</a>
+                    </button>
                 <form action="/save/<%= item.id %>" method="POST">
                     <button class="postButton" type="submit">Save Story</button>
                 </form>
