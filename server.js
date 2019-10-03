@@ -155,29 +155,26 @@ function renderSavedNews(req, res){
 
 //----------------DarkSky API-----------------------------
 function weatherAPICall(req, res, zipcode){
-  // let ZIPurl = `https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/info.json/${zipcode}/degrees`;
-  // return superagent.get(ZIPurl)
-  //   .then(superagentResults => {
-  //     console.log(superagentResults.body);
-  // superagentResults.body.lat
-  // superagentResults.body.lng
-
-  let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/61.03055,-130.95877`
-  return superagent.get(url)
+  let ZIPurl = `https://www.zipcodeapi.com/rest/${process.env.ZIPCODE_API_KEY}/info.json/${zipcode}/degrees`;
+  return superagent.get(ZIPurl)
     .then(superagentResults => {
-      let dailyResults = superagentResults.body.daily.data;
-      let weatherArray = dailyResults.map(day => {
-        let newDay = new Weather(day);
-        newDay.textToIcon();
-        return newDay;
-      })
+      console.log(superagentResults.body);
+      let url = `https://api.darksky.net/forecast/${process.env.WEATHER_API_KEY}/${superagentResults.body.lat},${superagentResults.body.lng}`
+      return superagent.get(url)
+        .then(superagentResults => {
+          let dailyResults = superagentResults.body.daily.data;
+          let weatherArray = dailyResults.map(day => {
+            let newDay = new Weather(day);
+            newDay.textToIcon();
+            return newDay;
+          })
 
-      return weatherArray;
+          return weatherArray;
+        })
+        .catch(err =>{
+          console.log(err);
+        })
     })
-    .catch(err =>{
-      console.log(err);
-    })
-    // })
 }
 
 //---------------Delete News ---------------------
